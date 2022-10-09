@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    {%load static%}
+    <head>
+        <meta charset='utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %} ShinyPomme {% endblock %}</title>
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    </head>
+    <body>
+        <header>
+            <div class="heder_menu">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'rcdapp:form_page'%}">新規作成</a>
+                    <a href="{% url 'rcdapp:form_list'%}">一覧</a>
+                    <a href="{% url 'rcdapp:backup' %}">バックアップ</a>
+                    <a href="{% url 'rcdapp:user_logout' %}">ログアウト</a>
+                {% endif %}
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <p class="class_hedder_img"><img src="/media/header/header.jpg" class="header_img"></img></p>
+                {% block content %} {% endblock %}
+            </div>
+        </main>
+    </body>
+</html>

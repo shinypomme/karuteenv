@@ -1,0 +1,114 @@
+{% extends "rcdapp/base.html" %}
+{% block title %} {{block.super}} カルテ更新 {% endblock %}
+{% block content %} 
+    {% bootstrap_javascript jquery='full' %}
+    {{ update_form.media }}
+    {% load mathfilters %}
+    <form method='POST' enctype="multipart/form-data">
+        <div class="form_contents">
+            {% csrf_token %}
+            <br>
+            <br>
+            {% for message in messages %}
+                <div {% if message.tags %}class="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% if not messages %}
+            <h1 class="class_subject">基本情報</h1>
+            <p>カルテNo.：　{{rcd.id}}</p>
+            <p>飼い主の名前：　{{update_form.name_orner}}</p>
+            <p>ワンちゃんの名前：　{{update_form.name_dog}}</p>
+            <p>電話番号：　{{update_form.mail}}</p>
+            <p>メールアドレス：　{{update_form.tel}}</p>
+            <p>店：　{{update_form.store}}</p>
+            <br>
+            <table class="class_table">
+                <tr class="td_center">
+                    <th class="th_center">画像1</th>
+                </tr>
+                <tr>
+                    <td>
+                        {{update_form.picture_1}}
+                        {% if rcd.picture_1 %}
+                            <div class="class_wrapper_img"><img src={{ rcd.picture_1.url }} class="class_img"></img></div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="th_center">画像2</th>
+                </tr>
+                <tr>
+                    <td>
+                        {{update_form.picture_2}}
+                        {% if rcd.picture_2 %}
+                            <div class="class_wrapper_img"><img src={{ rcd.picture_2.url }} class="class_img"></img></div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="th_center">画像3</th>
+                </tr>
+                <tr>
+                    <td>
+                        {{update_form.picture_3}}
+                        {% if rcd.picture_3 %}
+                            <div class="class_wrapper_img"><img src={{ rcd.picture_3.url }} class="class_img"></img></div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="th_center">画像4</th>
+                </tr>
+                <tr>
+                    <td>
+                        {{update_form.picture_4}}
+                        {% if rcd.picture_4 %}
+                            <div class="class_wrapper_img"><img src={{ rcd.picture_4.url }} class="class_img"></img></div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="th_center">画像5</th>
+                </tr>
+                <tr>
+                    <td>
+                        {{update_form.picture_5}}
+                        {% if rcd.picture_5 %}
+                            <div class="class_wrapper_img"><img src={{ rcd.picture_5.url }} class="class_img"></img></div>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+
+            <br>
+            <br>
+            <h1 class="class_subject">今回の受診内容</h1>
+            <div>受診日：　{{update_form.date_examin}}</div>
+            <br>
+            <p>受診内容：</p><p>{{update_form.operation}}</p>
+            
+            <br>
+            <h1 class="class_subject">過去の受診内容</h1>
+            {% for update in update_form %}
+                {% if forloop.counter > 13 and forloop.counter <= 13|add:end_loop %}
+                    {% if forloop.counter|divisibleby:"2" %}
+                        {{forloop.counter|add:-14|div:2|add:1}}回目：{{ update }}
+                    {% else %}
+                        {{ update }}
+                    {% endif %}
+                {% endif %} 
+            {% endfor %}
+            <br>
+            <br>
+            <div class="class_btn"><input class="cls_button" type="submit" value="カルテを更新"></div>
+            <br>
+            <br>
+            <div class="class_btn"><a href="{% url 'rcdapp:delete_user' id=rcd.id %}" class="class_link">カルテを削除</a></div>
+            {% endif %}
+        </div>
+    </form>
+    
+    <br>
+    <br>
+{% endblock %}

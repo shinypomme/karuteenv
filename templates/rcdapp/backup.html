@@ -1,0 +1,18 @@
+{% extends "rcdapp/base.html" %}
+{% block title %} {{block.super}} カルテバックアップ {% endblock %}
+{% block content %} 
+    <div class="form_contents">
+        <form method='POST' enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for message in messages %}
+                <div {% if message.tags %}class="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% if not messages %}
+                <p class="confirm">カルテをCSVにバックアップして<br>ダウンロードしますか？</p>
+                <div class="class_btn"><input class="cls_button" type="submit" value="ダウンロード"></div>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

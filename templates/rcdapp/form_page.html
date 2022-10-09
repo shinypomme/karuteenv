@@ -1,0 +1,80 @@
+{% extends "rcdapp/base.html" %}
+{% block title %} {{block.super}} カルテ新規作成 {% endblock %}
+{% block content %} 
+    {% bootstrap_javascript jquery='full' %}
+    {{ form.media }}
+    <form method='POST' enctype="multipart/form-data">
+        <div class="form_contents">
+            <br>
+            <br>
+            <h1 class="class_subject">カルテ新規作成</h1>
+            {% for message in messages %}
+                <div {% if message.tags %}class="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% csrf_token %}
+            {% if not messages %}
+                <p>飼い主の名前：　{{form.name_orner}}</p>
+                <p>ワンちゃんの名前：　{{form.name_dog}}</p>
+                <p>電話番号：　{{form.tel}}</p>
+                <p>メールアドレス：　{{form.mail}}</p>
+                <p>店：　{{form.store}}</p>
+                <P>画像：</P>
+                <table class="class_table">
+                    <tr class="td_center">
+                        <th class="th_center">画像1</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{form.picture_1}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="th_center">画像2</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{form.picture_2}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="th_center">画像3</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{form.picture_3}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="th_center">画像4</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{form.picture_4}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="th_center">画像5</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{form.picture_5}}
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div>受診日：　{{form.date_examin_1}}</div>
+                <br>
+                <p>受診内容：</p><p>{{form.operation_1}}</p>
+                {{ formset.management_form }}
+                <br>
+                <div class="class_btn"><input class="cls_button" type="submit" value="保存"></div>
+                <br>
+                <br>
+            {% endif %}
+        </div>
+    </form>
+    
+{% endblock %}
+

@@ -1,0 +1,24 @@
+@media (max-width:700px) {
+    .container {
+        max-width:700px;
+    }
+
+    .form_contents {
+        width: 300px;
+    }
+
+    .delete_contents {
+        width: 300px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    table.class_table th {
+        font-size: 12px;
+    }
+    table.class_table td{
+        font-size: 12px;
+    }
+}

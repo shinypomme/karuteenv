@@ -1,0 +1,174 @@
+body {
+    font-family: "游ゴシック", sans-serif;
+}
+
+.container {
+    max-width:1170px;
+    width: 95%;
+    padding: 0 ;
+    margin: 0 auto;
+}
+
+.heder_menu {
+    text-align:center; 
+}
+.heder_menu a {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.form_contents {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.form_contents_wide {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.cls_form {
+    width: 100%;
+}
+
+.cls_form_past {
+    width: 100%;
+    height: 100px;
+}
+
+.confirm {
+    text-align:center; 
+}
+
+.delete_contents {
+    width: 500px;
+    margin: 0 auto;
+}
+
+
+header {
+    text-align: center;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    top: 0;
+    z-index: 999;
+}
+
+.class_wrapper_img {
+    text-align: center;
+}
+
+.class_hedder_img img { 
+    max-width: 100%;
+}
+
+img.class_img {
+    height: auto;
+    width: 200px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.class_subject {
+    display: flex;
+    align-items: center;
+}
+
+.class_subject:before,.class_subject:after{
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    display: block;
+}
+
+.class_subject:before {
+    margin-right: .4em;
+    background: linear-gradient(-90deg, #888, transparent);
+}
+
+.class_subject:after {
+    margin-left: .4em;
+    background: linear-gradient(90deg, #888, transparent);
+}
+
+table {
+    margin: 0 auto;
+    width: 100%
+}
+
+table.class_table th {
+    border:1px solid rgb(210, 210, 210);
+    background:rgb(190, 190, 190);
+    color : rgb(255, 255, 255);
+}
+
+table.class_table td{
+    border:1px solid rgb(210, 210, 210);
+    background:#ffffff;
+}
+
+td.td_center {
+    text-align: center;
+}
+
+th.th_center {
+    text-align: center;
+    font-weight: normal;
+}
+
+.class_btn {
+    text-align: center;
+}
+
+.cls_button {
+    border: none;
+    color: rgb(255, 255, 255);
+    background:rgb(190, 190, 190);
+    border-radius: 0.25rem;
+    padding: 1px 20px;
+    transition: all .3s;
+}
+
+.cls_button:hover{
+    opacity: 0.6;
+  }
+
+button {
+    border-width: 1px;
+}
+
+.cls_form_past{
+    color: rgb(0, 0, 0);
+    border : 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.cls_form{
+    color: rgb(0, 0, 0);
+    border : 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.class_link {
+    border-radius: 0.25rem;
+    background-color: rgb(190, 190, 190);
+    padding: 4px 10px;
+    text-decoration: none;
+    color: white;
+    transition: all .3s;
+}
+
+.class_link:hover {
+    text-decoration: none;
+    color: white;
+    opacity: 0.6;
+}
+
+#id_store{
+    list-style: none;
+}

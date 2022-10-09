@@ -1,0 +1,38 @@
+{% extends "rcdapp/base.html" %}
+{% block title %} {{block.super}} カルテ一覧 {% endblock %}
+{% block content %} 
+    <br>
+    <br>
+    <h1 class="class_subject">カルテ一覧</h1>
+    <div class="form_contents">
+        <form method="POST" action="{% url 'rcdapp:form_list' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="cls_button" type="submit" value="検索"/>
+        </form>
+        <p>　</p>
+        {% if rcds %}
+            <table class="class_table">
+                <tr>
+                    <th class="th_center">No.</th>
+                    <th class="th_center">飼い主</th>
+                    <th class="th_center">ワンちゃん</th>
+                    <th class="th_center">店</th>
+                    <th class="th_center">TEL</th>
+                </tr>
+                {% for rcd in rcds %}
+                        <tr>
+                        <td class="td_center"><a href="{% url 'rcdapp:form_update' id=rcd.id %}">　{{ rcd.id }}　</a></td>
+                        <td>{{ rcd.name_orner }}</td>
+                        <td>{{ rcd.name_dog }}</td>
+                        <td>{{ rcd.get_store_display }}</td>
+                        <td>{{ rcd.tel }}</td> 
+                    </tr>
+                {% endfor %}
+            </table>
+            <br>
+        {% else %}
+            <p>該当カルテがありません。</p>
+        {% endif %}
+    </div>
+{% endblock %}
