@@ -25,7 +25,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'django-insecure-a6kuw3fsc*&h_+ykuxnqvnlna*ap@r5_u!8z^uvw0ed3yoaqdq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '54.249.138.119', 'ec2-54-249-138-119.ap-northeast-1.compute.amazonaws.com']
 
@@ -89,8 +89,12 @@ BOOTSTRAP4 = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'karutedb',
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': '',
+        'PORT': '',
     }
 }
 
