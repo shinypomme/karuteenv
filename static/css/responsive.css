@@ -3,6 +3,12 @@
         max-width:700px;
     }
 
+    .heder_menu a {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 12px;
+    }
+
     .form_contents {
         width: 300px;
     }

@@ -44,9 +44,7 @@ def index(request):
 @login_required
 def form_page(request):
     form = forms.UserInfo(request.POST or None, request.FILES or None)
-    print(form.errors)
     if form.is_valid():
-        form.record_no = 0
         messages.success(request, '保存しました。')
         form.save()
         form = forms.UserInfo()
@@ -67,16 +65,14 @@ def form_list(request):
                 for ii, store in enumerate(STORE_LIST):
                     if word in store:
                         store_name.append(str(ii + 1))
-                query = (Q(name_orner__contains = word) | Q(name_dog__contains = word) | Q(store__in = store_name) | Q(tel__contains = word))
+                query = (Q(id__contains = word) | Q(name_orner__contains = word) | Q(name_dog__contains = word) | Q(breed_dog__contains = word) | Q(store__in = store_name) | Q(tel__contains = word))
                 queries.append(query)
             rcds = PostRcd.objects.filter(*queries)
         else:
             rcds = PostRcd.objects.all()
-        print(rcds)
     else:
         form = forms.UserFind()
         rcds = PostRcd.objects.all()
-
     return render(
         request, 'rcdapp/form_list.html', context = {
             'rcds' : rcds,
@@ -88,7 +84,7 @@ def is_changed_data(before, after):
     is_changed = False
     if before.name_orner != after.cleaned_data['name_orner']    \
     or before.name_dog != after.cleaned_data['name_dog']        \
-    or before.mail != after.cleaned_data['mail']                \
+    or before.breed_dog != after.cleaned_data['breed_dog']      \
     or before.tel != after.cleaned_data['tel']                  \
     or before.store != after.cleaned_data['store']              \
     or after.cleaned_data['operation']                          \
@@ -109,8 +105,8 @@ def make_form_initial(rcd):
     initial = {
         'name_orner':rcd.name_orner,
         'name_dog':rcd.name_dog,
+        'breed_dog':rcd.breed_dog,
         'store':rcd.store,
-        'mail':rcd.mail,
         'tel':rcd.tel,
         'picture_1':rcd.picture_1,
         'picture_2':rcd.picture_2,
@@ -146,8 +142,8 @@ def form_update(request, id):
             changed_data = is_changed_data(rcd, update_form)
             rcd.name_orner = update_form.cleaned_data['name_orner']
             rcd.name_dog = update_form.cleaned_data['name_dog']
+            rcd.breed_dog = update_form.cleaned_data['breed_dog']
             rcd.store = update_form.cleaned_data['store']
-            rcd.mail = update_form.cleaned_data['mail']
             rcd.tel = update_form.cleaned_data['tel']
             rcd.date_examin = update_form.cleaned_data['date_examin']
             rcd.operation = update_form.cleaned_data['operation']
@@ -196,6 +192,7 @@ def delete_user(request, id):
         "id" : str(id),
         "name_orner" : str(rcd.name_orner),
         "name_dog" : str(rcd.name_dog),
+        "breed_dog" : str(rcd.breed_dog),
         "tel" : str(rcd.tel),
         "store" : STORE_LIST[int(rcd.store)]
     }

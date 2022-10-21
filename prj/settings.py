@@ -89,12 +89,8 @@ BOOTSTRAP4 = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'karutedb',
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': '',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -150,9 +146,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR
 ]
-STATIC_ROOT = '/usr/share/nginx/html/static'
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/usr/share/nginx/html/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MESSAGE_TAGS = {
     messages.INFO: 'alert alert-info',

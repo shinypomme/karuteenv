@@ -17,7 +17,7 @@ STORE_CHOISE = (
 class PostRcd(models.Model):
     name_orner = models.CharField(max_length=50)
     name_dog = models.CharField(max_length=255)
-    mail = models.EmailField(max_length=255, null=True)
+    breed_dog = models.CharField(max_length=255, null=True)
     tel = models.CharField(max_length=20, null=True)
     store = models.CharField(max_length=255, choices=STORE_CHOISE, null=True)
     picture_1 = models.FileField(upload_to='picture/%Y/%m/%d', null=True)

@@ -17,6 +17,7 @@
                     <th class="th_center">No.</th>
                     <th class="th_center">飼い主</th>
                     <th class="th_center">ワンちゃん</th>
+                    <th class="th_center">犬種</th>
                     <th class="th_center">店</th>
                     <th class="th_center">TEL</th>
                 </tr>
@@ -25,6 +26,7 @@
                         <td class="td_center"><a href="{% url 'rcdapp:form_update' id=rcd.id %}">　{{ rcd.id }}　</a></td>
                         <td>{{ rcd.name_orner }}</td>
                         <td>{{ rcd.name_dog }}</td>
+                        <td>{{ rcd.breed_dog }}</td>
                         <td>{{ rcd.get_store_display }}</td>
                         <td>{{ rcd.tel }}</td> 
                     </tr>

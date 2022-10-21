@@ -20,8 +20,8 @@ STORE_CHOISE = (
 class UserInfo(forms.ModelForm):
     name_orner = forms.CharField(label='飼い主の名前', widget=forms.TextInput(attrs={'class': 'cls_form'}))
     name_dog = forms.CharField(label='ワンちゃんの名前', widget=forms.TextInput(attrs={'class': 'cls_form'}))
+    breed_dog = forms.CharField(label='犬種', widget=forms.TextInput(attrs={'class': 'cls_form'}))
     store = forms.ChoiceField(label='店', choices=STORE_CHOISE, widget=forms.RadioSelect(attrs={'class': 'cls_choice'}))
-    mail = forms.EmailField(label='メール', required=False, widget=forms.TextInput(attrs={'class': 'cls_form'}))
     tel = forms.CharField(label='電話番号', required=False, widget=forms.TextInput(attrs={'class': 'cls_form'}))
 
     record_no = forms.IntegerField(required=False)
@@ -196,7 +196,6 @@ class UserInfo(forms.ModelForm):
     def save(self, *args, **kwargs):
         obj = super(UserInfo, self).save(commit=False, *args, **kwargs)
         # save前に変換したいデータがあればここに記入
-
         obj.save()
         return obj
 
